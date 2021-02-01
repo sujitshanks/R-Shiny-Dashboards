@@ -3,14 +3,15 @@ library(shinydashboard)
 
 shinyUI(
   dashboardPage(
-    dashboardHeader(title = "Shanks Backyard", 
-                    dropdownMenu(type = "message",
-                                 messageItem(from = "Finance update", message = "We are on the threshold"),
-                                 messageItem(from = "Sales Update", message = "Sales are at 55%", icon = icon("bar-chart"), time = "22:00"),
-                                 messageItem(from = "Sales Update", message = "Sales meeting at 6pm on Monday", icon = icon("handshake-o"), time = "02-01-2021")
-                    )
-                    
+    dashboardHeader(title = "Shanks Backyard", dropdownMenuOutput("msgoutput")
+                    # dropdownMenu(type = "message",
+                    #              messageItem(from = "Finance update", message = "We are on the threshold"),
+                    #              messageItem(from = "Sales Update", message = "Sales are at 55%", icon = icon("bar-chart"), time = "22:00"),
+                    #              messageItem(from = "Sales Update", message = "Sales meeting at 6pm on Monday", icon = icon("handshake-o"), time = "02-01-2021")
+                    # )
                     ),
+    
+    
     dashboardSidebar(
       sliderInput("bins","Number of Breaks", 1, 100, 50),
       sidebarMenu(
