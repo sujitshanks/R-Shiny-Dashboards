@@ -49,6 +49,12 @@ shinyUI(
         
         tabItem(tabName = "dashboard", 
         fluidRow(
+          infoBox("Sales", 15000,icon = icon("thumbs-up")),
+          infoBox("Conversion %", paste0('20%'), icon = icon("warning")),
+          infoBoxOutput("approvedSales")
+        ),
+        
+        fluidRow(
           #creating tab panels
           tabBox(
           tabPanel(title = "Histogram of Faithful dataset", status = "primary", solidHeader = T, background = "aqua", plotOutput("histogram")),

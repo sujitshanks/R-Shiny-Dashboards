@@ -14,4 +14,11 @@ shinyServer(function(input, output){
     
     dropdownMenu(type = "messages", .list = msgs)# .list to send  all messages at once
   })
+  
+  
+  output$approvedSales <- renderInfoBox(
+    {
+      infoBox("Approved Sales", "10,00,000", icon = icon("bar-chart-o"))
+    }
+  )
 })
