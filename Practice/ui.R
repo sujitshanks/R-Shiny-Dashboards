@@ -33,22 +33,32 @@ shinyUI(
     
     
     dashboardSidebar(
-      sliderInput("bins","Number of Breaks", 1, 100, 50),
       sidebarMenu(
+        sidebarSearchForm("searchText", "buttonSearch","Search"),
       menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
          menuSubItem("Dashboard: Finance", tabName = "finance"),
          menuSubItem("Dashboard: Sales", tabName = "sales"),
-      menuItem("Detailed Analysis"),
+      menuItem("Detailed Analysis", badgeLabel = "New", badgeColor = "green"),
       menuItem("Raw Data")
+      # the idea here is to allow for sidebar control to retrieve from files or
+      #database. For that, make a similar connection on the server side: see server.R
     )),
     dashboardBody(
       #everything in the body needs to be in a box
       tabItems(
+        
         tabItem(tabName = "dashboard", 
         fluidRow(
-          box(plotOutput("histogram"))
+          #creating tab panels
+          tabBox(
+          tabPanel(title = "Histogram of Faithful dataset", status = "primary", solidHeader = T, background = "aqua", plotOutput("histogram")),
+          tabPanel(title = "Controls for Dashboard", status = "warning", background = "green", solidHeader = T,
+              "Use these controls to finetune your dashboard.",br(), "Do not use lot of controls to avoid confusion.",
+              sliderInput("bins","Number of Breaks", 1, 100, 50),
+              textInput("text_input","Search Opportunities", value = "123456" ))
+                 
                  )
-                ),
+             )),
         
         tabItem(tabName = "finance",
                 h1("Finance Dashboard")
