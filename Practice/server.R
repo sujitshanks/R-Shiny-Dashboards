@@ -21,4 +21,10 @@ shinyServer(function(input, output){
       infoBox("Approved Sales", "10,00,000", icon = icon("bar-chart-o"))
     }
   )
+  
+  output$itemRequested <- renderValueBox(
+    {
+     valueBox(15*300,"Item Requested by employees", icon = icon("fire"), color = "yellow") 
+    }
+  )
 })

@@ -2,7 +2,7 @@ library(shiny)
 library(shinydashboard)
 
 shinyUI(
-  dashboardPage(
+  dashboardPage( title = "Demo dashbard :)", skin = "black", 
     dashboardHeader(title = "Shanks Backyard", dropdownMenuOutput("msgoutput"),
                     # dropdownMenu(type = "message",
                     #              messageItem(from = "Finance update", message = "We are on the threshold"),
@@ -49,9 +49,18 @@ shinyUI(
         
         tabItem(tabName = "dashboard", 
         fluidRow(
+          column(width = 9, 
           infoBox("Sales", 15000,icon = icon("thumbs-up")),
           infoBox("Conversion %", paste0('20%'), icon = icon("warning")),
           infoBoxOutput("approvedSales")
+          )
+        ),
+        
+        
+        fluidRow(
+          valueBox(15*200, "Budget for 15 days", icon = icon("hourglass-2")),
+          valueBoxOutput("itemRequested")
+          
         ),
         
         fluidRow(
